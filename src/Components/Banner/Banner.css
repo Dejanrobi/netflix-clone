@@ -1,0 +1,11 @@
+.banner{
+    height: 448px;
+
+    background-image: url("../../Images/bannerimage.jpg");
+    background-size: cover;
+    background-position: center center;
+    position: relative;
+    color: white;
+    object-fit: contain ;
+    /* width: 100%; */
+}
