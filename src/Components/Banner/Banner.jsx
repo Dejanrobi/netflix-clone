@@ -3,7 +3,6 @@ import { banner } from '../../Constants/images';
 
 // Importing css
 import "./Banner.css";
-
 const Banner = () => {
   return (
     <header className='banner' >
@@ -19,6 +18,10 @@ const Banner = () => {
             This is a test description
         </h1>
       </div>
+
+      <div className="banner--fadeBottom"/>
+
+      
     </header>
   )
 }
