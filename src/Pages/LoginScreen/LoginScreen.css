@@ -1,13 +1,139 @@
 .loginScreen{
     position: relative;
     height: 100%;
-    
+    background: url("https://149695847.v2.pressablecdn.com/wp-content/uploads/2019/05/apps.55787.9007199266246365.687a10a8-4c4a-4a47-8ec5-a95f70d8852d.jpg") center no-repeat;
+    background-size: cover;
 }
+
+/* .nav__login{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+} */
 
 .loginScreen__logo{
     position: fixed;
-    left: 20px;
-    top: 20px;
-    width: 120px;
+    left: 40px;
+    top: 14px;
+    width: 140px;
     object-fit: contain;
+}
+
+.loginScreen__button{
+    position: fixed;
+    right: 50px;
+    top: 30px; 
+    padding: 10px 20px;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    color: #fff;
+    background-color: #e50914;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.loginScreen__gradient{
+    width: 100%;
+    z-index: 1;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.3);
+    /* background-image: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.8) 0,
+        rgba(0, 0, 0, 0) 60%,
+        rgba(0, 0, 0, 0.4) 100%
+    ); */
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/* .loginScreen__body{
+   position: absolute;
+   left: 0;
+   right: 0;
+} */
+.login__content{
+    margin-top: 4rem;
+    
+}
+
+.loginScreen__body h1{ 
+    
+    
+    width: 600px;
+    text-align: center;
+    z-index: 2;
+    color: #fff;
+    padding: 20px;
+    font-size: 3.125rem;
+    font-weight: 500;
+    letter-spacing: 0.7px;
+}
+
+.loginScreen__body .watch{
+    z-index: 2;
+    color: #fff;
+    text-align: center;
+    font-size: 1.6rem;
+    letter-spacing: 0.8px;
+}
+
+.loginScreen__body .ready{
+    z-index: 2;
+    color: #fff;
+    text-align: center;
+    font-size: 1.2rem;
+    /* letter-spacing: 0.8px; */
+    margin-top: 40px;
+    font-weight: 300;
+}
+
+.getStarted{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 23px;
+}
+
+.emailInput{
+    padding: 20px 10px;
+    font-size: 0.95rem;
+    letter-spacing: 0.2px;
+    /* color: rgb(255, 255, 255); */
+    font-weight: 500;
+    width: 27rem;
+    display: inline-block;
+    border-radius: 2px;
+    border: solid;
+    border-color: rgb(194, 194, 194);
+    border-width: 2px;
+    outline: none;
+}
+
+.getStartedButton{
+    background-color: #e50914;
+    padding: 1.062rem 10px;
+    border: solid;
+    border-color: #e50914;
+    
+    width: 13rem;
+    color: white;
+    font-size: 1.5rem;
+    letter-spacing: 0.2px;
+
+    
+    /* display: inline-block; */
+    border: none;
+    cursor: pointer;
+
+    display: flex;
+    flex-direction: row;
+    gap: 7px;
+    align-items: center;
+    justify-content: center;
+
 }
