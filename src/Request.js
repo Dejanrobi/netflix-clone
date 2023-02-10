@@ -1,7 +1,8 @@
 // Loading the .env variable
 const TMDB_API_KEY = process.env.REACT_APP_TMDB_API_KEY;
 
-// console.log(TMDB_API_KEY);
+// console.log(process.env.REACT_APP_TMDB_API_KEY);
+console.log("when");
 
 // Making requests from the database
 const requests={

@@ -1,28 +1,68 @@
 .signupScreen{
-    max-width: 300px;
-    padding: 50px 0px;
-    margin-left: auto;
-    margin-right: auto;
-    background: rgba(0,0,0,0.85);
-
-
+    background: rgba(0, 0, 0, 0.85);
+    width: 22rem;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-
+    justify-content: center;
+    /* padding: 20px; */
+    padding-top: 50px;
+    padding-bottom: 50px;
 }
 
-.signupScreen form{
+.signupScreen h3{
+    color: white;
+    font-size: 30px;
+    /* padding-bottom: 20px; */
+    margin-bottom: 10px;
+    /* text-align: left; */
+}
+
+.formElements{
     display: flex;
     flex-direction: column;
-    gap: 10px   ;
-    max-width: 200px;
+    align-items: left;
+    justify-content: center;
+    gap: 15px;
+    margin: auto;
+    /* display: block; */
 }
 
-.signupScreen form input{
-    /* width: auto; */
-    margin-left: auto;
-    margin-right: auto;
-   
+.formElements p{
+    margin-top: 10px;
+    color: white;
+    font-size: 0.9rem;
+    letter-spacing: 0.3px;
+    color: rgb(156, 156, 156);
+}
+
+.formElements p a{
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+.formElements p a:hover{
+    text-decoration: underline;
+}
+
+.formElements input, .formElements button{
+    padding: 13px;
+    outline: none;
+    border: none;
+    border-radius: 3px;
+    /* width: 300px; */
+    min-width: 220px;
+
+}
+
+
+.formElements button{
+   background-color: #e50914;
+   /* opacity: 0.8; */
+   color: white;
+   font-weight: 700;
+   letter-spacing: 0.2px;
+   cursor: pointer;
+   margin-top: 12px;
 }
