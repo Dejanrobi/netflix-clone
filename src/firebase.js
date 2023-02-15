@@ -18,11 +18,19 @@ const firebaseConfig = {
 
 // console.log(process.env.REACT_APP_TMDB_API_KEY);
 
-console.log(firebaseConfig.apiKey);
-console.log("jane");
+// console.log(firebaseConfig.apiKey);
+// console.log("jane");
 
 // Initializing firebase
 export const app = initializeApp(firebaseConfig);
 
+// Initializing Auth
+export const auth = getAuth(app);
+
+// Initializing storage
+export const storage = getStorage(app);
+
+// Initializing firestore database
+export const firestoreDb = getFirestore(app);
  
 

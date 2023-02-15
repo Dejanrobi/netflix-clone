@@ -1,4 +1,4 @@
-.signupScreen{
+.signInScreen, .signUpScreen{
     background: rgba(0, 0, 0, 0.85);
     width: 22rem;
     display: flex;
@@ -10,7 +10,7 @@
     padding-bottom: 50px;
 }
 
-.signupScreen h3{
+.signUpScreen h3, .signInScreen h3{
     color: white;
     font-size: 30px;
     /* padding-bottom: 20px; */
@@ -18,7 +18,7 @@
     /* text-align: left; */
 }
 
-.formElements{
+.signUpformElements, .signInformElements{
     display: flex;
     flex-direction: column;
     align-items: left;
@@ -28,7 +28,7 @@
     /* display: block; */
 }
 
-.formElements p{
+.signUpformElements p, .signInformElements p{
     margin-top: 10px;
     color: white;
     font-size: 0.9rem;
@@ -36,17 +36,17 @@
     color: rgb(156, 156, 156);
 }
 
-.formElements p a{
+.signUpformElements p a, .signInformElements p a{
     text-decoration: none;
     color: white;
     font-weight: bold;
 }
 
-.formElements p a:hover{
+.signUpformElements p a:hover, .signInformElements p a:hover{
     text-decoration: underline;
 }
 
-.formElements input, .formElements button{
+.signUpformElements input, .signUpformElements button, .signInformElements input, .signInformElements button{
     padding: 13px;
     outline: none;
     border: none;
@@ -57,7 +57,7 @@
 }
 
 
-.formElements button{
+.signUpformElements button, .signInformElements button{
    background-color: #e50914;
    /* opacity: 0.8; */
    color: white;
