@@ -3,7 +3,7 @@ import React, { useRef } from 'react'
 // importing CSS
 import "./SignUpScreen.css";
 
-const SignUpScreen = ({startEmail, updateSignIn}) => {
+const SignUpScreen = ({startEmail, updateMySignUp}) => {
     const nameRef = useRef(null);
     const emailRef = useRef(null);
     const passwordRef = useRef(null);
@@ -25,19 +25,24 @@ const SignUpScreen = ({startEmail, updateSignIn}) => {
 
     // Singing in
     const handleSignIn=()=>{
-        updateSignIn();
+        updateMySignUp();
 
     }
   return (
-    <div className='signupScreen'>
+    <div className='signUpScreen'>
       
-      <form className='formElements' action="">
+      <form className='signUpformElements' action="">
           <h3>Sign Up</h3>
           <input ref={nameRef} type="text" placeholder='Name' />          
-          <input ref={emailRef} type="email" placeholder='Email'  />
+          <input ref={emailRef} type="email" placeholder='Email'  defaultValue={startEmail}/>
           <input ref={passwordRef} type="password" placeholder='Password' />
           <button type='submit' onClick={handleSignIn}>Sign Up</button> 
-          <p>Already have an Account? <a href='/' >Sign In</a></p>     
+          <div className='goToSignIn'>
+            <p>Already have an Account? </p> 
+            <p className='signIn' onClick={handleSignIn}>Sign In</p>
+            {/* <button onClick={handleSignIn}>Sign In</button> */}
+          </div>
+              
       </form>
     </div>
   )

@@ -66,3 +66,20 @@
    cursor: pointer;
    margin-top: 12px;
 }
+
+
+.goToSignIn{
+    display: flex;
+    flex-direction: row;
+}
+
+.goToSignIn .signIn{
+    color: white;
+    margin-left: 7px;
+    cursor: pointer;
+
+}
+
+.goToSignIn .signIn:hover{
+    text-decoration: underline;
+}

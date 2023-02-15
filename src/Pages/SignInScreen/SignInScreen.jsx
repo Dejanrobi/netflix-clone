@@ -21,10 +21,29 @@ const SignInScreen = ({startEmail, updateSignUp}) => {
   const singIn = (e)=>{
     e.preventDefault();
   }
+
+  const handleSignup=()=>{
+    setSignUp(true)
+  }
+
+
+  const handleSignIn=()=>{
+    setSignUp(false)
+  }
+
+  const updateMySignUp=()=>{
+    setSignUp(false);
+  }
+
   return (
     <div>
       {
-        !signUp?(
+        signUp?(
+            <SignUpScreen startEmail={signInemailRef.current.value} updateMySignUp={updateMySignUp}/>
+
+
+          
+        ):(
           <div className='signInScreen'>
       
             <form className='signInformElements' action="">
@@ -32,23 +51,15 @@ const SignInScreen = ({startEmail, updateSignUp}) => {
                 <input ref={signInemailRef} type="email" placeholder='Email' defaultValue={startEmail} />
                 <input ref={signInpasswordRef} type="password" placeholder='Password' />
                 <button type='submit' onClick={singIn}>Sign In</button> 
-                <p>New to Netflix? <button onClick={()=>setSignUp(true)}>Sign Up now</button></p>     
+                   
+                <div className='goToSignIn'>
+                  <p>New to Netflix? </p> 
+                  <p className='signIn' onClick={handleSignup}>Sign Up Now</p>
+                  {/* <button onClick={handleSignIn}>Sign In</button> */}
+                </div>
             </form>
           </div>
-        ):(
-          <div className='signUpScreen'>
-      
-            <form autoComplete='off' className='signUpformElements' action="">
-                <h3>Sign Up</h3>
-                <input ref={signUpnameRef} placeholder='Name' defaultValue={""}/>
-                <input ref={signUpemailRef} type="email" placeholder='Email' defaultValue={startEmail}/>
-                <input autoComplete='off' ref={signUppasswordRef} type="password" placeholder='Password' />
-                
-                <button type='submit' >Sign Up</button> 
-
-                <p>Already have an Account? </p>     
-            </form>
-          </div>
+          
         )
       }
     </div>

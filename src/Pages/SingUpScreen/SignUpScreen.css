@@ -1,0 +1,93 @@
+.signInScreen, .signUpScreen{
+    background: rgba(0, 0, 0, 0.85);
+    width: 22rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* padding: 20px; */
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.signUpScreen h3, .signInScreen h3{
+    color: white;
+    font-size: 30px;
+    /* padding-bottom: 20px; */
+    margin-bottom: 10px;
+    /* text-align: left; */
+}
+
+.signUpformElements, .signInformElements{
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: center;
+    gap: 15px;
+    margin: auto;
+    /* display: block; */
+}
+
+.signUpformElements p button{
+    background-color: red;
+    padding: 0;
+    display: inline-block;
+}
+
+.signUpformElements p, .signInformElements p{
+    margin-top: 10px;
+    color: white;
+    font-size: 0.9rem;
+    letter-spacing: 0.3px;
+    color: rgb(156, 156, 156);
+    display: inline-block;
+}
+
+.signUpformElements p a, .signInformElements p a{
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+.signUpformElements p a:hover, .signInformElements p a:hover{
+    text-decoration: underline;
+}
+
+.signUpformElements input, .signUpformElements button, .signInformElements input, .signInformElements button{
+    padding: 13px;
+    outline: none;
+    border: none;
+    border-radius: 3px;
+    /* width: 300px; */
+    min-width: 220px;
+
+}
+
+
+.signUpformElements button, .signInformElements button{
+   background-color: #e50914;
+   /* opacity: 0.8; */
+   color: white;
+   font-weight: 700;
+   letter-spacing: 0.2px;
+   cursor: pointer;
+   margin-top: 12px;
+}
+
+
+
+.goToSignIn{
+    display: flex;
+    flex-direction: row;
+}
+
+.goToSignIn .signIn{
+    color: white;
+    margin-left: 7px;
+    cursor: pointer;
+
+}
+
+.goToSignIn .signIn:hover{
+    text-decoration: underline;
+}
