@@ -5,63 +5,44 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 
 import "./SignInScreen.css";
 import SignUpScreen from '../SingUpScreen/SignUpScreen';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../Context/AuthContext';
 
 
-const SignInScreen = ({startEmail, updateSignUp}) => {
+const SignInScreen = () => {
   const signUpemailRef = useRef(null);
   const signUppasswordRef = useRef(null);
   const signUpnameRef = useRef("Jane");
   const signInemailRef = useRef(null);
   const signInpasswordRef = useRef(null);
   
+  const navigate = useNavigate();
 
-  const [signUp, setSignUp] = useState(false);
+  // obtaining the startEmail
+  const { startEmail } = useAuth();
 
-  // Singing in
-  const singIn = (e)=>{
-    e.preventDefault();
-  }
-
-  const handleSignup=()=>{
-    setSignUp(true)
-  }
-
-
-  const handleSignIn=()=>{
-    setSignUp(false)
-  }
-
-  const updateMySignUp=()=>{
-    setSignUp(false);
-  }
+  
 
   return (
-    <div>
-      {
-        signUp?(
-            <SignUpScreen startEmail={signInemailRef.current.value} updateMySignUp={updateMySignUp}/>
+    <div className='signInLogin'>
+      <div className='signInScreen'>
+     
+        <form className='signInformElements' action="">
+            <h3>Sign In</h3>          
+            <input ref={signInemailRef} type="email" placeholder='Email' defaultValue={startEmail} />
+            <input ref={signInpasswordRef} type="password" placeholder='Password' />
+            <button type='submit' >Sign In</button> 
+              
+            <div className='goToSignIn'>
+              <p>New to Netflix? </p> 
+              <p className='signIn' onClick={()=>{
+                navigate("/signup")
 
-
-          
-        ):(
-          <div className='signInScreen'>
-      
-            <form className='signInformElements' action="">
-                <h3>Sign In</h3>          
-                <input ref={signInemailRef} type="email" placeholder='Email' defaultValue={startEmail} />
-                <input ref={signInpasswordRef} type="password" placeholder='Password' />
-                <button type='submit' onClick={singIn}>Sign In</button> 
-                   
-                <div className='goToSignIn'>
-                  <p>New to Netflix? </p> 
-                  <p className='signIn' onClick={handleSignup}>Sign Up Now</p>
-                  {/* <button onClick={handleSignIn}>Sign In</button> */}
-                </div>
-            </form>
-          </div>
-          
-        )
-      }
+              }} >Sign Up Now</p>
+              
+            </div>
+        </form>
+      </div>      
     </div>
     
     

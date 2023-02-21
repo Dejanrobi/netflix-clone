@@ -7,18 +7,55 @@ import {
 
 
 import './App.css';
+import { useAuth } from './Context/AuthContext';
 
 import HomeScreen from "./Pages/HomeScreen/HomeScreen";
+import Loading from './Pages/Loading/Loading';
 import LoginScreen from './Pages/LoginScreen/LoginScreen';
+import SignInScreen from './Pages/SignInScreen/SignInScreen';
+import SignUpScreen from './Pages/SingUpScreen/SignUpScreen';
+import UpdateProfile from './Pages/UpdateProfile/UpdateProfile';
+
+
 
 function App() {
+
+  const { load, currentUser } = useAuth();
   const user = null;
 
   return (
     <div className="app">
+
+      {/* <SignUpScreen/> */}
+
+      {
+        load ? (
+          <Loading/>
+        ):(
+          <>
+          {
+            !currentUser?(
+              <Routes>
+                <Route exact path='/' element={<LoginScreen/>}/>
+                <Route exact path='/login' element={<SignInScreen/>}/>
+                <Route exact path='/signup' element={<SignUpScreen/>}/>
+
+              </Routes>
+            ):(
+              <Routes>
+                <Route exact path='/' element={<HomeScreen/>}/>
+                <Route exact path='/home' element={<HomeScreen/>}/>
+                <Route exact path='/update-profile' element={<UpdateProfile/>}/>
+              </Routes>
+            )
+          }
+          </>
+        )
+      }
+      
       {/* <HomeScreen/> */}
       {/* Routes */}
-      <BrowserRouter>
+      {/* <BrowserRouter>
         {
           !user ? (
             <LoginScreen/>
@@ -30,7 +67,7 @@ function App() {
           )
         }
         
-      </BrowserRouter>
+      </BrowserRouter> */}
     </div>
   );
 }

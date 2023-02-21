@@ -1,0 +1,50 @@
+.goToSignIn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.upload-profile{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 13px;
+    cursor: pointer;
+    /* justify-content: center; */
+}
+
+.upload-profile img{
+ width: 3rem;
+ 
+}
+
+.upload-profile span{
+    color: white;
+}
+
+.uploadBut{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    gap: 20px;
+}
+
+.uploadBut p{
+    cursor: pointer;
+}
+
+.uploadBut p:hover{
+    text-decoration: underline;
+}
+
+.signSuccess{
+    background-color: #38c790;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    border-radius: 2px;
+}
+

@@ -5,19 +5,30 @@ import {BsChevronRight} from "react-icons/bs"
 import './LoginScreen.css';
 import SignInScreen from '../SignInScreen/SignInScreen';
 import SignUpScreen from '../SingUpScreen/SignUpScreen';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../../Context/AuthContext';
 
 const LoginScreen = () => {
-  const [signIn, setSignIn] = useState(false);
+  // const [signIn, setSignIn] = useState(false);
+
+  // setting the start email
+  const { setEmail } = useAuth();
 
   const getStartedRef = useRef(null);
 
   const handleSubmit = (e)=>{
     e.preventDefault()
 
+    // setting the mail
+    setEmail(getStartedRef.current.value)
+
     // setting sign In to true
-    setSignIn(true)
+    navigate("/login")
+    
 
   }
+
+  const navigate = useNavigate();
 
   
   return (
@@ -28,26 +39,20 @@ const LoginScreen = () => {
               className='loginScreen__logo'
               src={netflixlogo} alt="login Screen Logo" 
               onClick={()=>{
-                setSignIn(false)
+                navigate("/")
                 
               }}
           />
-          {
-            !signIn &&(<button onClick={()=>{setSignIn(true)}} className='loginScreen__button'>
-            Sign In
-        </button>)
-          }
+          <button onClick={()=>{navigate("/login")}} className='loginScreen__button'>
+              Sign In
+          </button>
+
+          
           
 
           <div className="loginScreen__gradient">
             <div className="loginScreen__body">
-              {
-                signIn ? (
-                 
-                    <SignInScreen startEmail={getStartedRef.current.value}/>
-                               
-                ):(
-                  <>
+
                     <div className="login__content">
                       <h1>Unlimited movies, TV shows, and more.</h1>
                       <p className='watch'>Watch anywhere. Cancel anytime.</p>
@@ -58,10 +63,7 @@ const LoginScreen = () => {
                       </form>
 
                     </div>
-                    
-                  </>
-                )
-              }
+              
               
               
             </div>

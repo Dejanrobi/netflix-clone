@@ -1,0 +1,17 @@
+*{
+    margin: 0;
+    padding: 0;
+
+}
+
+.loading{
+    height: 100vh;
+    background-color: #111;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.loadingImage{
+    width: 9rem;
+}

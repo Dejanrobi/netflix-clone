@@ -26,7 +26,19 @@
     background-color: black;
 }
 
+.profileDet{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+}
 
+.profileName{
+    color: white;
+    font-size: large;
+    font-weight: bold;
+}
 /*
 
 .nav__logo, .nav__avatar{
@@ -42,10 +54,33 @@
     cursor: pointer;
 }
 
+.setProfile{
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    padding: 8px 0px;
+    
+    border-radius: 5px;
+    cursor: pointer;
+
+    position: absolute;
+    top: 5rem;
+}
+.uprof{
+    padding: 5px 10px;
+    transition: all ease-in;
+}
+
+.uprof:hover{
+    background-color: rgb(216, 216, 216);
+}
+
 .nav__avatar{
     
-    width: 35px;
-    height: 35px;
+    width: 42px;
+    height: 42px;
     border-radius: 50%;
     cursor: pointer;
 }
