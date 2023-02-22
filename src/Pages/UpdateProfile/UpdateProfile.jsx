@@ -15,7 +15,7 @@ const UpdateProfile = () => {
     
    
 
-    const { currentUser, emailUpdate, passwordUpdate, pictureUpdate, nameUpdate } = useAuth();
+    const { currentUser, emailUpdate, passwordUpdate, pictureUpdate, nameUpdate, removeWords } = useAuth();
    
 
     // setting the errors and loading while signing up
@@ -129,7 +129,13 @@ const UpdateProfile = () => {
 
             
         } catch (error) {
-            setError(error.message)
+            let modErr = await removeWords(error.message)
+            setError(modErr)    
+            // console.log(modErr)  
+            
+            setTimeout(() => {
+                setError('')
+            }, 4000);
            
         }
 

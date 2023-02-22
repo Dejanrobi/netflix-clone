@@ -12,6 +12,7 @@ import { useAuth } from './Context/AuthContext';
 import HomeScreen from "./Pages/HomeScreen/HomeScreen";
 import Loading from './Pages/Loading/Loading';
 import LoginScreen from './Pages/LoginScreen/LoginScreen';
+import ProfileScreen from './Pages/ProfileScreen/ProfileScreen';
 import SignInScreen from './Pages/SignInScreen/SignInScreen';
 import SignUpScreen from './Pages/SingUpScreen/SignUpScreen';
 import UpdateProfile from './Pages/UpdateProfile/UpdateProfile';
@@ -46,6 +47,7 @@ function App() {
                 <Route exact path='/' element={<HomeScreen/>}/>
                 <Route exact path='/home' element={<HomeScreen/>}/>
                 <Route exact path='/update-profile' element={<UpdateProfile/>}/>
+                <Route exact path='/profile' element={<ProfileScreen/>}/>
               </Routes>
             )
           }

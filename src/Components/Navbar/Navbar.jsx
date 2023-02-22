@@ -27,6 +27,7 @@ const Navbar = () => {
     // Logout
     const handleLogout=()=>{
         logout()
+       
     }
 
     // Use Effect function
@@ -41,13 +42,13 @@ const Navbar = () => {
   return (
     <div className={`nav ${show && "nav__black"}`}>
         <div className="nav__contents">
-            <img className='nav__logo' src={netflixlogo} alt="Netflix logo" />
+            <img onClick={()=>{navigate("/")}} className='nav__logo' src={netflixlogo} alt="Netflix logo" />
             <div className='profileDet'>
                 <div className='profileName'>
                     {currentUser.displayName}
                 </div>
                 
-                <img className='nav__avatar' src={currentUser.photoURL?currentUser.photoURL:avatar} alt="Avatar" onClick={()=>{setUpdateProfileDiv(!updateProfileDiv)}} />
+                <img className='nav__avatar' src={currentUser.photoURL?currentUser.photoURL:avatar} alt="Avatar" onClick={()=>{navigate("/profile")}} />
             
                 {
                     updateProfileDiv && (

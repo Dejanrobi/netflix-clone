@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { createUserWithEmailAndPassword, onAuthStateChanged, signOut, updateEmail, updatePassword, updateProfile } from 'firebase/auth';
+import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateEmail, updatePassword, updateProfile } from 'firebase/auth';
 import { auth } from '../firebase';
 
 
@@ -27,6 +27,9 @@ const AuthProvider = ({children})=>{
         setStartEmail(email);
     }
 
+    function setOverallLoading(load){
+        setLoad(load);
+    }
     // Signing up the user using the auth module
     function signup(email, password){
         const userResponse = createUserWithEmailAndPassword(auth, email, password);
@@ -56,6 +59,28 @@ const AuthProvider = ({children})=>{
         return updateProfile(auth.currentUser, {
             displayName: name
         })
+    }
+
+    //Login user with email and password
+    function login(email, password){
+        return signInWithEmailAndPassword(auth, email, password);
+    }
+
+    // a function to remove certain words from an error
+    function removeWords(error){
+        if(error.includes("Firebase")){
+            if(error.includes("Firebase: Error (auth/")){
+                let newError = error.replace('Firebase: Error (auth/', 'Error: (')
+                return newError
+            }else if(error.includes("Firebase: Password should be at least 6 characters (auth/")){
+                let newError = error.replace('Firebase: Password should be at least 6 characters (auth/', 'Error: Password should be at least 6 characters(')
+                return  newError
+            }
+            
+
+        }else{
+            return error
+        }
     }
 
     // function to logout
@@ -95,7 +120,10 @@ const AuthProvider = ({children})=>{
         passwordUpdate,
         nameUpdate, 
         pictureUpdate,
-        logout
+        logout,
+        login, 
+        removeWords,
+        setOverallLoading
         
     }
 

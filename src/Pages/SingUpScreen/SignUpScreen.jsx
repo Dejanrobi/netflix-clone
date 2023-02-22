@@ -17,7 +17,7 @@ const SignUpScreen = () => {
     const passwordRef = useRef(null);
 
     // obtaining the signupFunction from the auth
-    const { signup, startEmail } = useAuth();
+    const { signup, startEmail, removeWords } = useAuth();
 
     // setting the errors and loading while signing up
     const [error, setError] = useState('');
@@ -61,7 +61,13 @@ const SignUpScreen = () => {
           
           
         } catch (error) {
-          setError(error.message)  
+          let modErr = await removeWords(error.message)
+          setError(modErr)    
+          console.log(modErr)  
+          
+          setTimeout(() => {
+            setError('')
+          }, 5000);
         }
 
         // setting loading to false after everything
