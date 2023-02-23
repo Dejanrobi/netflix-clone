@@ -31,7 +31,7 @@ const SignUpScreen = () => {
 
     }
 
-    const registerUser= async (e)=>{
+    const registerUser= async(e)=>{
         // prevents the form from refreshing
         e.preventDefault();
 
@@ -42,8 +42,8 @@ const SignUpScreen = () => {
 
           const userResponse = await signup(emailRef.current.value, passwordRef.current.value)
           
-          navigate("/")
-
+          
+          // console.log(userResponse.user.uid)
           // updating the userProfile
           await updateProfile(userResponse.user, {
             displayName: nameRef.current.value
@@ -57,13 +57,18 @@ const SignUpScreen = () => {
             
           });
 
+          await setDoc(doc(firestoreDb, "users", "ABARACADABRA"), {
+            name: "ABRACADABRA"
+            
+          });
+
           // Navigate to the homescreen
           
           
         } catch (error) {
           let modErr = await removeWords(error.message)
           setError(modErr)    
-          console.log(modErr)  
+          // console.log(modErr)  
           
           setTimeout(() => {
             setError('')
