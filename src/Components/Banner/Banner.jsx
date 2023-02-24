@@ -27,7 +27,7 @@ const Banner = () => {
 
   }, [])
 
-  console.log(movie)
+  // console.log(movie)
 
   // truncate the description
   function truncate(string, n){

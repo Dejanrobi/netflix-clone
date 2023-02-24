@@ -12,12 +12,17 @@ import { firestoreDb } from '../../firebase';
 import { setDoc, doc } from 'firebase/firestore';
 
 const SignUpScreen = () => {
-    const nameRef = useRef(null);
-    const emailRef = useRef(null);
+
+    const [email, setEmail] = useState('');
+    const [name, setName] = useState('');
+
+    // console.log(email)
+    // console.log(name)
+    
     const passwordRef = useRef(null);
 
     // obtaining the signupFunction from the auth
-    const { signup, startEmail, removeWords } = useAuth();
+    const { signup, startEmail, removeWords, setOverallLoading } = useAuth();
 
     // setting the errors and loading while signing up
     const [error, setError] = useState('');
@@ -40,31 +45,43 @@ const SignUpScreen = () => {
           setError('')
           setLoading(true)
 
-          const userResponse = await signup(emailRef.current.value, passwordRef.current.value)
+          const userResponse = await signup(email, passwordRef.current.value)
           
           
           // console.log(userResponse.user.uid)
           // updating the userProfile
-          await updateProfile(userResponse.user, {
-            displayName: nameRef.current.value
-          });
 
-          // Setting the user's details in cloud firestore
-          await setDoc(doc(firestoreDb, "users", userResponse.user.uid), {
-            uid: userResponse.user.uid,
-            displayName: nameRef.current.value,
-            email: emailRef.current.value
+          // Update User's details function
+
+          setOverallLoading(true);
+          try {
+            await updateProfile(userResponse.user, {
+              displayName: name
+            });
+
+            // console.log("Data Updated Successfully!")
             
-          });
+          } catch (error) {
+            console.log(error.message)
+          }
 
-          await setDoc(doc(firestoreDb, "users", "ABARACADABRA"), {
-            name: "ABRACADABRA"
+          try {
+
+            const useRef = doc(firestoreDb, 'users', userResponse.user.uid);
+            await setDoc(useRef, {
+              uid: userResponse.user.uid,
+              displayName: name,
+              email: email
+            })
             
-          });
+            // console.log("Data Added Successfully!")
+          } catch (error) {
+            console.log(error)
+          }
 
-          // Navigate to the homescreen
-          
-          
+          setOverallLoading(false);
+
+                   
         } catch (error) {
           let modErr = await removeWords(error.message)
           setError(modErr)    
@@ -101,8 +118,8 @@ const SignUpScreen = () => {
             {error && <div className='signError'>{error}</div>}
                      
             <h3>Sign Up</h3>
-            <input ref={nameRef} type="text" placeholder='Name' required />          
-            <input ref={emailRef} type="email" placeholder='Email' defaultValue={startEmail}   required/>
+            <input value={name} onChange={((e)=>{setName(e.target.value)})} type="text" placeholder='Name' required />          
+            <input value={email} onChange={((e)=>{setEmail(e.target.value)})} type="email" placeholder='Email' defaultValue={startEmail}   required/>
             <input ref={passwordRef} type="password" placeholder='Password' required />
 
             {

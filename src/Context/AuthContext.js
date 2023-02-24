@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateEmail, updatePassword, updateProfile } from 'firebase/auth';
-import { auth } from '../firebase';
+import { auth, firestoreDb } from '../firebase';
+import { doc, setDoc } from 'firebase/firestore';
 
 
 // creating a context
@@ -88,6 +89,15 @@ const AuthProvider = ({children})=>{
         return signOut(auth);
     }
 
+    // function addUserToFirestore
+    function addUserToFirestore(userId, uid, displayName, email){
+        return setDoc(doc(firestoreDb, "users", userId)),{
+            uid,
+            displayName,
+            email
+        }
+    }
+
     
 
 
@@ -95,6 +105,7 @@ const AuthProvider = ({children})=>{
     useEffect(()=>{
         // using the onAuthStateChanged to check whether we have a user
         const unsubscribe =  onAuthStateChanged(auth, (user)=>{
+            setLoad(true);
             setCurrentUser(user)
 
             // initial Loading sets the Loading to false
@@ -123,7 +134,8 @@ const AuthProvider = ({children})=>{
         logout,
         login, 
         removeWords,
-        setOverallLoading
+        setOverallLoading,
+        addUserToFirestore
         
     }
 
