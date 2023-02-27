@@ -2,6 +2,7 @@ import { doc, setDoc } from 'firebase/firestore';
 import React, { useRef } from 'react'
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../../Components/Navbar/Navbar';
+import PlanScreen from '../../Components/PlanScreen/PlanScreen';
 import { avatar } from '../../Constants/images';
 import { useAuth } from '../../Context/AuthContext';
 
@@ -39,7 +40,8 @@ const ProfileScreen = () => {
                     <h2>{currentUser.email}</h2>
                     <div className="profileScreen__plans">
                         <h3>Plans</h3>
-
+                        
+                        <PlanScreen/>
                         <button onClick={handleSingout} className='profileScreen__signout'>Sign Out</button>
                     </div>
 
