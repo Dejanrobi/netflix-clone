@@ -19,3 +19,8 @@
     font-weight: 600;
     cursor: pointer;
 }
+
+
+.planScreen__plan--disabled button{
+    background-color: gray !important;
+}

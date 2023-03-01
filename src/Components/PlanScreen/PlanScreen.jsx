@@ -14,7 +14,35 @@ const PlanScreen = () => {
     // Obtaining products where active == true
 
     // fetch products data
+
+    // Subscriptions
+    const [subscription, setSubscription] = useState(null);
     
+    // runnning a useEffect to set the subscription 
+    // The useEffect runs whenever the user changes
+    useEffect(()=>{
+
+        // Getting all the subscriptions
+        const retrieveSubscriptions= async()=>{
+            const querySnapshot = await getDocs(collection(firestoreDb, "customers", `${currentUser.uid}`, "subscriptions"));
+
+            querySnapshot.forEach( async(doc)=>{
+                setSubscription({
+                    role: doc.data().role,
+                    current_period_end: doc.data().current_period_end.seconds,
+                    current_period_start: doc.data().current_period_start.seconds,
+                    
+
+                })
+
+            })
+
+        }
+
+        retrieveSubscriptions();
+        
+    },[currentUser.uid])
+
     useEffect(()=>{
         const fetchProducts= async()=>{
 
@@ -62,36 +90,12 @@ const PlanScreen = () => {
     },[])
 
     // console.log(products);
+    // console.log(subscription);
 
     // Load Checkout
     const loadCheckout =async(priceId)=>{
         try {
-            // // Get a reference to the subcollection
-            // const subcollectionRef = collection(firestoreDb, "customers", `${currentUser.uid}`, "checkout_sessions");
-
-            // // Add a document to the subcollection
-            // const docRef = await addDoc(subcollectionRef, {
-            //     price: priceId,
-            //     success_url: window.location.origin,
-            //     cancel_url: window.location.origin
-            // });
-
-            // // Listen for changes to the subcollection and redirect to Stripe Checkout
-            // onSnapshot(docRef, async(docSnapshot) => {
-            // // Get the session id from the added document
-            //     const sessionId = docSnapshot.id;
-
-            //     const stripe = await loadStripe('pk_test_51MetEpJnzz2MgDNqpdRv9rcndwLKXT9G7aT7nBTziNa1H0maS8qUXMysXKnM1BzWPyMPEwgYVUKQ5E6xlxyf0T3r00SWqc2T3I');
-
-            //     // Redirect to Stripe Checkout with the session id
-            //     stripe.redirectToCheckout({ sessionId })
-            //         .then(result => {
-            //         // Handle any errors
-            //         if (result.error) {
-            //             console.log(result.error.message);
-            //         }
-            //         });
-            // });
+            
 
             // Get a reference to the subcollection
             const subcollectionRef = collection(firestoreDb, "customers", `${currentUser.uid}`, "checkout_sessions");
@@ -135,18 +139,24 @@ const PlanScreen = () => {
     }
   return (
     <div className='planScreen'>
+        {
+            subscription && <p>Renewal Date: {new Date(subscription?.current_period_end*1000).toLocaleDateString()} </p>
+        }
+        
       {Object.entries(products).map(([productId, productData])=>{
         //Add some logic to check if the user's subscriptions is  active
         // console.log(productId, productData)
+
+        const isCurrentPackage = productData.name?.toLowerCase().includes(subscription?.role);
         return(
-            <div key={productId} className="planScreen__plan">
+            <div key={productId} className={`${isCurrentPackage && 'planScreen__plan--disabled'} planScreen__plan`}>
                 <div className="planScreen__info">
                     <h5>{productData.name}</h5>
                     <h6>{productData.description}</h6>
                 </div>
 
-                <button onClick={()=>loadCheckout(productData.prices.priceId)}>
-                   Subscribe 
+                <button onClick={()=> !isCurrentPackage && loadCheckout(productData.prices.priceId)}>
+                   {isCurrentPackage?'Current Package': "Subscribe"}
                 </button>
             </div>
         )
